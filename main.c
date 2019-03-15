@@ -35,10 +35,12 @@ static void des_init(void)
 int main(int argc, char *argv[])
 {
 	int ch;
+	int* p = 1;
 
 	while ((ch = getopt(argc, argv, "dei:o:k:")) != -1)
 		switch (ch) {
 		case 'd':
+			p = 0;
 			des.op = DECRYPT;
 			break;
 		case 'e':
@@ -57,13 +59,13 @@ int main(int argc, char *argv[])
 			usage();
 			/* NOTREACHED */
 		}
-
+	
 	des_init();
 	des_key_permute(des.key);
 	des_generate_subkeys(des.key, des.subkeys);
 	des_mode(&des);
 
-	return 0;
+	return *p;
 }
 
 void usage(void)

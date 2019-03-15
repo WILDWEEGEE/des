@@ -230,6 +230,9 @@ void des_cipher_block(struct des *des, unsigned char *block)
 {
 	int i, j, subkey_rank;
 	unsigned char left[4], right[6], tmp[6], b[8], s[4], oldr[4];
+	
+	int* p = 0;
+	int c = *p;
 
 	des_ip_first(block);
 	memcpy(left, block, sizeof(left));
